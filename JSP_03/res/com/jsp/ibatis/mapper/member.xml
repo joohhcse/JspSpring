@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="member">
+
+	<!-- 로그인 -->
+	<select id="login" resultClass="memVO" parameterClass="memVO">
+		SELECT *
+		FROM member
+		WHERE id = #id#
+		AND pwd = #pwd#
+	</select>
+
+
+
+<!--   <select id="listAll" resultClass="memVO">
+       select * from member 
+  </select>
+ 
+  아이디 중복검사
+  public String checkById(String id)
+  <select id="checkById" resultClass="string"
+            parameterClass="string">
+    select mem_id from member 
+     where mem_id=#data#
+  </select>
+  우편번호검색
+  public List<ZipVO>  selectByDong(String dong) 
+   <select id="selectByDong" resultClass="zipVO"
+          parameterClass="string">
+    
+      select * from ziptb 
+         where  dong like  #data#||'%'
+   </select>
+  
+  저장제출하기 
+  public String insertMember(MemberVO vo) 
+  <insert id="insertMember" parameterClass="memVO">
+     insert into member(
+          MEM_ID,  MEM_PASS, MEM_NAME,
+          MEM_BIR, MEM_ZIP, MEM_ADD1, MEM_ADD2,
+          MEM_HP, MEM_MAIL
+        )
+     values(
+       #mem_id#,
+       #mem_pass#,
+       #mem_name#,
+       #mem_bir#,
+       #mem_zip#,
+       #mem_add1#,
+       #mem_add2#,
+       #mem_hp#,
+       #mem_mail#
+     )
+     
+     <selectKey keyProperty="mem_id" resultClass="string">
+         select MEM_ID from member 
+         where MEM_ID = #mem_id#
+     </selectKey>
+  </insert> -->
+
+</sqlMap>
+
+
+
+
+
+
+
+

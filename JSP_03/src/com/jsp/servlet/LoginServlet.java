@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.jsp.service.LoginService;
+import com.jsp.service.LoginServiceImpl;
+
 /**
  * Servlet implementation class LoginServlet
  */
@@ -34,24 +37,50 @@ public class LoginServlet extends HttpServlet {
 		
 		//로그인 처리		//MemberVO member = mService.getMember(id);
 //		response.sendRedirect("/main");
+
+		LoginService service = LoginServiceImpl.getInstance();
 		
-		if(!(id.equals("mimi") && pwd.equals("mimi"))) {
+		MemberVO mvo = new MemberVO();
+		mvo.setId(id);
+		mvo.setPwd(pwd);
+		
+		MemberVO resmv = service.login(mvo);
+		
+		if(resmv == null) {
+			System.out.println("login fail");
+
 			request.setAttribute("id", id);
 			url = "/WEB-INF/views/common/loginForm.jsp";
 		}
-		else {
+		else {	//login success
+			System.out.println("login ok");
+
 			//로그인성공
 			MemberVO member = new MemberVO();
 			member.setId(id);
 			member.setPwd(pwd);
-			member.setEmail("mimi");
+			member.setEmail("helloUser");
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", member);
-			
-			System.out.println(member.toString());
-
 		}
+		
+//		if(!(id.equals("mimi") && pwd.equals("mimi"))) {
+//			request.setAttribute("id", id);
+//			url = "/WEB-INF/views/common/loginForm.jsp";
+//		}
+//		else {
+//			//로그인성공
+//			MemberVO member = new MemberVO();
+//			member.setId(id);
+//			member.setPwd(pwd);
+//			member.setEmail("mimi");
+//			
+//			HttpSession session = request.getSession();
+//			session.setAttribute("loginUser", member);
+//			
+//			System.out.println(member.toString());
+//		}
 		
 		request.getRequestDispatcher(url).forward(request,  response);
 		
