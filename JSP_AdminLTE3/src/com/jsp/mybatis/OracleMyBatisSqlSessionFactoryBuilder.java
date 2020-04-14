@@ -7,31 +7,31 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class OracleMyBatisSqlSessionFactoryBuilder {
-	
-	private OracleMyBatisSqlSessionFactoryBuilder() {}
-	
+
+	private OracleMyBatisSqlSessionFactoryBuilder() {}	
+		
 	private static SqlSessionFactory sqlSessionFactory;
 	
 	static {
-		String config = "com/jsp/mybatis/sqlConfig.xml";
+		
+		String config="com/jsp/mybatis/sqlConfig.xml";
 		
 		try {
-			Reader reader = Resources.getResourceAsReader(config);
+			Reader reader=Resources.getResourceAsReader(config);
 			
-			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+			sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
+			
+			/*reader.close();*/
 			
 			System.out.println("sqlSessionFactory 성공했습니다.");
-		} catch (Exception e) {
+		}catch(Exception e) {			
 			System.out.println("sqlSessionFactory 실패했습니다.");
 			e.printStackTrace();
 		}
 		
 	}
-	
+
 	public static SqlSessionFactory getSqlSessionFactory() {
 		return sqlSessionFactory;
 	}
-	
-	
-	
 }

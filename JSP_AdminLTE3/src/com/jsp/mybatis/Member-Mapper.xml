@@ -3,45 +3,62 @@
 <mapper namespace="Member-Mapper">
 
 	<select id="selectMemberById" parameterType="str" resultType="member">
-		SELECT *
-		FROM member
-		WHERE id=#{id}
+		select 
+		* 
+		from member 
+		where id=#{id}
 	</select>
-
+	
+		
 	<select id="selectMemberList" resultType="member">
-		SELECT *
-		FROM member
+		select * 
+		from member
 	</select>
 	
 	<select id="selectMemberListCount" resultType="int">
-		SELECT COUNT(*)
-		FROM member
+		select count(*) 
+		from member
 	</select>
 	
 	<update id="insertMember" parameterType="member">
-		INSERT INTO
-		member(id, pwd, email, phone, picture)
-		VALUES(#{id},#{pwd},#{email},#{phone},#{picture})
-	</update>
+		insert into 
+		member(id, pwd, email, phone,picture,name)
+		values(#{id},#{pwd},#{email},#{phone},#{picture},#{name})
+	</update>	
 	
 	<update id="updateMember" parameterType="member">
-		UPDATE member
-		SET
-		pwd=#{pwd}, email=#{email}, phone=#{phone},picture=#{picture}
+		update member 
+		set 
+		pwd=#{pwd},email=#{email},phone=#{phone},name=#{name},
+		picture=#{picture}
 		
 		<if test="authority != null">
-			,authority = #{authority}
+			,authority=#{authority}
 		</if>
 		
-		where id = #{id}
+		where id=#{id}
 	</update>
-	
 	
 	<update id="deleteMember" parameterType="str" >
-		DELETE
-		FROM member
-		WHERE id = #{id}
+		delete 
+		from member 
+		where id=#{id}		
 	</update>
 	
+	<update id="disabledMember" >
+		update member 
+		set enabled=0
+		where id=#{id}
+	</update>
+	
+	<update id="enabledMember">
+		update member
+		set enabled=1
+		where id=#{id}
+	</update>
 	
 </mapper>
+
+
+
+

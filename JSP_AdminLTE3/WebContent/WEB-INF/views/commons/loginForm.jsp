@@ -42,8 +42,7 @@ body.login-page{
 
 			<form action="<%=request.getContextPath() %>/commons/login"	method="post">
 				<div class="form-group has-feedback">
-					<input type="text" class="form-control" name="id" placeholder="아이디를 입력하세요." value="${param.id }"
-					onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, &#39;&#39;);">
+					<input type="text" class="form-control" name="id" placeholder="아이디를 입력하세요." value="${param.id }">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
@@ -65,7 +64,10 @@ body.login-page{
 				</div>
 			</form>
 
+			
+
 			<a href="#" style="font-weight:bold;">아이디/패스워드 찾기</a><br> 
+			
 
 		</div>
 		<!-- /.login-box-body -->

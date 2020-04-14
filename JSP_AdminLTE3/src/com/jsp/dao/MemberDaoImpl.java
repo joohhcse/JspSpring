@@ -9,61 +9,85 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.jsp.dto.MemberVO;
 import com.jsp.mybatis.OracleMyBatisSqlSessionFactoryBuilder;
 
-public class MemberDaoImpl implements MemberDao {
-	
-	private static MemberDaoImpl instance = new MemberDaoImpl();
-	private MemberDaoImpl() {}
-	public static MemberDaoImpl getInstance() {
+public class MemberDAOImpl implements MemberDAO {
+
+	private static MemberDAOImpl instance=new MemberDAOImpl();
+	private MemberDAOImpl() {}
+	public static MemberDAOImpl getInstance() {
 		return instance;
 	}
 	
-	//SqlSessionFactory
-	private SqlSessionFactory sessionFactory = OracleMyBatisSqlSessionFactoryBuilder.getSqlSessionFactory();
-
+	// SqlSessionFactory
+	private SqlSessionFactory sessionFactory 
+			= OracleMyBatisSqlSessionFactoryBuilder.getSqlSessionFactory();
+	
+	
 	@Override
 	public List<MemberVO> selectMemberList() throws SQLException {
 		SqlSession session = sessionFactory.openSession();
-		List<MemberVO> memberList = session.selectList("Member-Mapper.selectMemberList", null);
+		List<MemberVO> memberList = session.selectList(
+				"Member-Mapper.selectMemberList", null);
 		session.close();
 		return memberList;
 	}
 
 	@Override
 	public int selectMemberListCount() throws SQLException {
-		int count = 0;
-		SqlSession session = sessionFactory.openSession();
-		count = session.selectOne("Member-Mapper.selectMemberListCount", null);
-		session.close();
+		int count=0;		
+		SqlSession session=sessionFactory.openSession();
+		try {
+			count=session.selectOne("Member-Mapper.selectMemberListCount",null);
+		}finally {
+			session.close();
+		}
 		return count;
 	}
 
 	@Override
 	public MemberVO selectMemberById(String id) throws SQLException {
-		SqlSession session = sessionFactory.openSession();
-		MemberVO member = session.selectOne("Member-Mapper.selectMemberById", id);
-		session.close();
+		SqlSession session=sessionFactory.openSession();		
+		MemberVO member=session.selectOne("Member-Mapper.selectMemberById",id);			
+		session.close();		
 		return member;
 	}
 
 	@Override
 	public void insertMember(MemberVO member) throws SQLException {
-		SqlSession session = sessionFactory.openSession(true);	//auto commit : (default)false -> true로 변경
-		session.update("Member-Mapper.insertMember", member);
+		SqlSession session=sessionFactory.openSession(true);
+		session.update("Member-Mapper.insertMember",member);
 		session.close();
+
 	}
 
 	@Override
 	public void updateMember(MemberVO member) throws SQLException {
-		SqlSession session = sessionFactory.openSession(true);	//auto commit : (default)false -> true로 변경
-		session.update("Member-Mapper.updateMember", member);
+		SqlSession session=sessionFactory.openSession(true);
+		session.update("Member-Mapper.updateMember",member);
 		session.close();
+
 	}
 
 	@Override
 	public void deleteMember(String id) throws SQLException {
-		SqlSession session = sessionFactory.openSession(true);	//auto commit : (default)false -> true로 변경
-		session.update("Member-Mapper.deleteMember", id);
+		SqlSession session=sessionFactory.openSession(true);
+		session.update("Member-Mapper.deleteMember",id);
 		session.close();
+
+	}
+	@Override
+	public void disabledMember(String id) throws SQLException {
+		SqlSession session=sessionFactory.openSession(true);
+		session.update("Member-Mapper.disabledMember",id);
+		session.close();
+
+	}
+	
+	@Override
+	public void enabledMember(String id) throws SQLException {
+		SqlSession session=sessionFactory.openSession(true);
+		session.update("Member-Mapper.enabledMember",id);
+		session.close();
+		
 	}
 
 }

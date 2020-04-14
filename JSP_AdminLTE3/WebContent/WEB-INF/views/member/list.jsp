@@ -3,7 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
@@ -70,60 +69,27 @@
 	             			<th>패스워드</th>
 	             			<th>이메일</th>
 	             			<th>전화번호</th>
-	             		</tr>
+	             		</tr>            		
 	             		
-<%-- 	             		
-	             		<%
-	             			List<MemberVO> memberList = (List<MemberVO>)request.getAttribute("memberList");
-	             		%>
- --%>
- <%-- 	             		
-	             		<%
-	             			if(memberList != null) {
-	             		%>
- --%>
- 						<c:if test="${!empty memberList }">
- 							<c:forEach var="member" items="${memberList }">
-<%-- 
- 	             		<%
-	             				for(MemberVO member : memberList) {
-	             					pageContext.setAttribute("member", member);
-	             				%>
---%>
-	             				<tr>
-	             					<td>${member.id} </td>
-	             					<td>${member.name} </td>
-	             					<td>${member.pwd} </td>
-	             					<td>${member.email} </td>
-	             					<td>${member.phone} </td>
+	             		<c:if test="${!empty memberList }">
+	             			<c:forEach var="member" items="${memberList }">	             			
+	             		         <tr>
+	             					<td><a href="javascript:OpenWindow('detail?id=${member.id }','회원상세보기','600','500');" >${member.id }</a></td>
+	             					<td>${member.name }</td>
+	             					<td>${member.pwd }</td>
+	             					<td>${member.email }</td>
+	             					<td>${member.phone }</td>	             					
 	             				</tr>
-<%-- 
-           				<%
-	             				}
-	             		%>
- --%>	             		
- 							</c:forEach>
- 						</c:if>
+	             			</c:forEach>
+	             		</c:if>
 	             		
-<%-- 	             		
-						<%
-	             			}else {
-	             		%>
- --%>	       
-       	
- 						<c:if test="${empty memberList }">
- 							<tr>
- 								<td colspan="5">EMPTY</td>
- 							</tr>
- 						</c:if>
- 						
-<%--  							
- 						<%
-	             			}
- 	             		%>
- --%>
- 
- 				 	</table>	
+	             		<c:if test="${empty memberList }">
+	             			<tr>
+	             				<td colspan="5" >해당 사항이 없습니다.</td>
+	             			</tr>
+	             		</c:if>
+	             		
+				 	</table>	
             	</div>
            	</div>            
        	  </div>   
@@ -131,25 +97,7 @@
 		  </div> <!-- card-footer -->
         </div> <!-- card  -->
       </section>	
-    </div>
+    </div>				
 				
+
 <%@ include file="/WEB-INF/views/include/footer.jsp" %>
-	<script>
-		//팝업창들 띄우기
-		//새로운 Window창을 Open할 경우 사용되는 함수 ( arg : 주소 , 창타이틀, 넓이, 길이 )
-		function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
-			winleft = (screen.width - WinWidth) / 2;
-			wintop = (screen.height - WinHeight) / 2;
-			var win = window.open(UrlStr, WinTitle, "scrollbars=yes, width=" + WinWidth + ", "
-								+ "height=" + WinHeight + ", top=" + wintop + ", left="
-								+ winleft + ", resizable=yes, status=yes" );
-			win.focus();
-		}
-		
-		//팝업창닫기
-		function CloseWindow() {
-			window.opener.location.reload(true);
-			window.close();
-		}
-	</script>				
-				

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 
+
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -26,6 +27,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- jQuery -->
   <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/jquery/jquery.min.js"></script>
 	
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -169,7 +171,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<%=request.getContextPath()%>/member/getPicture.do?picture=${loginUser.picture}" class="img-circle elevation-2" alt="User Image">
+          <img src="<%=request.getContextPath()%>/member/picture/get?picture=${loginUser.picture}"
+          	   onerror="this.src='<%=request.getContextPath() %>/resources/bootstrap/dist/img/avatar.png'" 
+          	   class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <div class="row">

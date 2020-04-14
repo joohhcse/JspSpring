@@ -3,63 +3,70 @@ package com.jsp.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.jsp.dao.MemberDao;
-import com.jsp.dao.MemberDaoImpl;
+import com.jsp.dao.MemberDAO;
+import com.jsp.dao.MemberDAOImpl;
 import com.jsp.dto.MemberVO;
 import com.jsp.exception.InvalidPasswordException;
 import com.jsp.exception.NotFoundIDException;
 
 public class MemberServiceImpl implements MemberService {
+
+	// 싱글톤 패턴 구현
 	private static MemberServiceImpl instance = new MemberServiceImpl();
 	private MemberServiceImpl() {}
 	public static MemberServiceImpl getInstance() {
 		return instance;
 	}
 	
-	private MemberDao memberDao = MemberDaoImpl.getInstance();
-	public void setMemberDao(MemberDao memberDao) {
-		this.memberDao = memberDao;
+	private MemberDAO memberDAO=MemberDAOImpl.getInstance();
+	public void setMemberDAO(MemberDAO memberDAO) {
+		this.memberDAO=memberDAO;
 	}
 	
+	
 	@Override
-	public void login(String id, String pwd) throws SQLException, NotFoundIDException, InvalidPasswordException {
-		MemberVO member = memberDao.selectMemberById(id);
-		if(member == null)
-			throw new NotFoundIDException();
-		
-		if(!pwd.equals(member.getPwd()))
-			throw new InvalidPasswordException();
-
+	public void login(String id, String pwd) throws SQLException, 
+								NotFoundIDException, InvalidPasswordException {
+		MemberVO member = memberDAO.selectMemberById(id);
+		if (member == null)	throw new NotFoundIDException();
+		if (!pwd.equals(member.getPwd())) throw new InvalidPasswordException();
 	}
 
 	@Override
 	public List<MemberVO> getMemberList() throws SQLException {
-		List<MemberVO> memberList = memberDao.selectMemberList();
+		List<MemberVO> memberList = memberDAO.selectMemberList();
 		return memberList;
 	}
 
 	@Override
 	public MemberVO getMember(String id) throws SQLException {
-		MemberVO member = memberDao.selectMemberById(id);
+		MemberVO member = memberDAO.selectMemberById(id);
 		return member;
 	}
 
 	@Override
 	public void regist(MemberVO member) throws SQLException {
-		// TODO Auto-generated method stub
-
+		memberDAO.insertMember(member);
 	}
 
 	@Override
 	public void modify(MemberVO member) throws SQLException {
-		// TODO Auto-generated method stub
-
+		memberDAO.updateMember(member);
 	}
 
 	@Override
 	public void remove(String id) throws SQLException {
-		// TODO Auto-generated method stub
-
+		memberDAO.deleteMember(id);
+	}
+	
+	@Override
+	public void disabled(String id) throws SQLException {
+		memberDAO.disabledMember(id);
+	}
+	
+	@Override
+	public void enabled(String id) throws SQLException {
+		memberDAO.enabledMember(id);
 	}
 
 }
