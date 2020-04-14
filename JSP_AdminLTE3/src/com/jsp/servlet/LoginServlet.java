@@ -20,16 +20,12 @@ import com.jsp.utils.ViewResolver;
 @WebServlet("/commons/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
-	/*public void init(ServletConfig config) throws ServletException {
-		System.out.println("init() execute!");
-	}
-
-	
-	public void destroy() {
-		System.out.println("destory() execute!");
-	}
-*/
+//	public void init(ServletConfig config) throws ServletException {
+//		System.out.println("init() execute!");
+//	}
+//	public void destroy() {
+//		System.out.println("destory() execute!");
+//	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

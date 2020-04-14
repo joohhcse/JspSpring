@@ -5,8 +5,13 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ include file="/WEB-INF/views/include/header.jsp" %>
-						
+
+<head>
+	<title>픽토르 시스템즈</title>
+</head>
+
+<%-- <%@ include file="/WEB-INF/views/include/header.jsp" %> --%>
+
 	<div class="content-wrapper">
 		<!-- Content Header (Page header) -->
 		  <section class="content-header">
@@ -100,4 +105,4 @@
     </div>				
 				
 
-<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+<%-- <%@ include file="/WEB-INF/views/include/footer.jsp" %> --%>

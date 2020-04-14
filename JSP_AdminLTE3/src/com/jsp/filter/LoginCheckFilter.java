@@ -26,31 +26,25 @@ public class LoginCheckFilter implements Filter {
 	public void destroy() {
 	}
 
-	public void init(FilterConfig fConfig) throws ServletException {
-		String excludeURLNames=fConfig.getInitParameter("exclude");
-		StringTokenizer st= new StringTokenizer(excludeURLNames,",");
-		while(st.hasMoreElements()) {
-			exURLs.add(st.nextToken());
-		}	
-	}
-	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		System.out.println("LoginCheckFilter :: doFilter");
 		HttpServletRequest httpReq=(HttpServletRequest)request;
 		HttpServletResponse httpResp=(HttpServletResponse)response;
 		
 		//제외할 url 확인
-		String reqUrl=httpReq.getRequestURI().substring(httpReq.getContextPath().length());
+		String reqUrl = httpReq.getRequestURI().substring(httpReq.getContextPath().length());
 		
 		if(excludeCheck(reqUrl)) {
 			chain.doFilter(request, response);	
 			return;
 		}
+		
 		HttpSession session = httpReq.getSession();
 		
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		
 		//login 확인
-		if(loginUser==null) { //비로그인 상태
+		if(loginUser == null) { //비로그인 상태
 			String url="commons/loginCheck";
 			ViewResolver.view(httpReq, httpResp, url);
 		}else {
@@ -58,6 +52,15 @@ public class LoginCheckFilter implements Filter {
 		}
 	}
 
+	public void init(FilterConfig fConfig) throws ServletException {
+		System.out.println("LoginCheckFilter :: init");
+		
+		String excludeURLNames=fConfig.getInitParameter("exclude");
+		StringTokenizer st= new StringTokenizer(excludeURLNames,",");
+		while(st.hasMoreTokens()) {
+			exURLs.add(st.nextToken());
+		}	
+	}
 	
 	private boolean excludeCheck(String url) {		
 		for(String exURL:exURLs) {

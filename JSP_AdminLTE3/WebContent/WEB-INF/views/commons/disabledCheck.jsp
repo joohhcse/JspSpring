@@ -2,8 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 
-<script>
-	window.opener.location.reload(true);
-	location.href="detail?id=${id}";
-</script>
 
+<script>
+ 	alert("disabledCheck");
+	
+	if(window.opener) {
+		
+	}
+	else{
+		
+	}
+	
+</script>

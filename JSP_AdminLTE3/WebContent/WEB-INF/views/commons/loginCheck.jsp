@@ -16,5 +16,4 @@
 		location.href = "<%= request.getContextPath()%>/commons/login";
 	}
 	
-// 	alert("이게 구라다. 이 새끼가 지금 이 타이밍에 나한테 구라를 치고있다, 이걸 어떻게 아십니까?")
 </script>
