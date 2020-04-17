@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.jsp.dto.MemberVO;
 import com.jsp.exception.InvalidPasswordException;
 import com.jsp.exception.NotFoundIDException;
+import com.jsp.service.MemberService;
 import com.jsp.service.MemberServiceImpl;
 import com.jsp.utils.ViewResolver;
 
@@ -26,9 +27,8 @@ public class LoginServlet extends HttpServlet {
 //	public void destroy() {
 //		System.out.println("destory() execute!");
 //	}
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String url="/WEB-INF/views/commons/loginForm.jsp";
 		
 		request.getRequestDispatcher(url).forward(request, response);	
@@ -44,11 +44,13 @@ public class LoginServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();		
 		
-		
 		try {
 			MemberServiceImpl.getInstance().login(id, pwd);
+//			memberService.login(id, pwd);
 			
 			MemberVO loginUser=MemberServiceImpl.getInstance().getMember(id);
+//			MemberVO loginUser = memberService.getMember(id);
+			
 			session.setAttribute("loginUser", loginUser);
 			session.setMaxInactiveInterval(6*60);
 //			session.setMaxInactiveInterval(6);
@@ -63,10 +65,8 @@ public class LoginServlet extends HttpServlet {
 			url="commons/loginForm";
 			request.setAttribute("msg", e.getMessage());
 		} 
-		
 		ViewResolver.view(request, response, url);
 	}
-
 }
 
 

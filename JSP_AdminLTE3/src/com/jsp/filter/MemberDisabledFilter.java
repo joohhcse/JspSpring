@@ -33,6 +33,13 @@ public class MemberDisabledFilter implements Filter {
 		HttpServletResponse httpResp = (HttpServletResponse)response;
 		
 		String uri = httpReq.getRequestURI();
+		System.out.println("MemberDisabledFilter :: uri > " + uri);
+		
+		if(!excludeCheck(uri)) {
+			chain.doFilter(request, response);	
+			System.out.println("MemberDisabledFilter :: doFilter > !exclude > " + uri);
+			return;
+		}
 		
 		MemberVO loginUser = (MemberVO)httpReq.getSession().getAttribute("loginUser");
 		
@@ -45,10 +52,8 @@ public class MemberDisabledFilter implements Filter {
 				}
 			}
 		}
-		else {
-			chain.doFilter(request, response);			
-		}
 		
+		chain.doFilter(request, response);			
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {

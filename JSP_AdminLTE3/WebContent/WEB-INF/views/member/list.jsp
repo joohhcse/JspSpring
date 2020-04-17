@@ -7,7 +7,7 @@
 
 
 <head>
-	<title>픽토르 시스템즈</title>
+	<title>회원관리 시스템</title>
 </head>
 
 <%-- <%@ include file="/WEB-INF/views/include/header.jsp" %> --%>
@@ -99,6 +99,7 @@
            	</div>            
        	  </div>   
 		  <div class="card-footer">
+		  	<%@ include file="/WEB-INF/views/pagination/pagination.jsp" %>
 		  </div> <!-- card-footer -->
         </div> <!-- card  -->
       </section>	
