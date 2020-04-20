@@ -18,24 +18,17 @@ public class InitListener implements ServletContextListener {
     public void contextDestroyed(ServletContextEvent ctxEvent)  { 
          // TODO Auto-generated method stub
     }
-
 	
     public void contextInitialized(ServletContextEvent ctxEvent)  { 
-         String sqlSessionFactoryType = 
-        		 ctxEvent.getServletContext().getInitParameter("sqlSessionFactory");
+         String sqlSessionFactoryType = ctxEvent.getServletContext().getInitParameter("sqlSessionFactory");
          String memberDAOType = ctxEvent.getServletContext().getInitParameter("memberDAO");
-         
-         
+
          try {
-        	 
-	         SqlSessionFactory sqlSessionFactory = 
-	        		 (SqlSessionFactory)Class.forName(sqlSessionFactoryType).newInstance();
-	         
+	         SqlSessionFactory sqlSessionFactory = (SqlSessionFactory)Class.forName(sqlSessionFactoryType).newInstance();
 	         
 	         Class<?> cls = Class.forName(memberDAOType);        
 	         
-	         Method setSqlSessionFactory 
-	         	= cls.getMethod("setSessionFactory", SqlSessionFactory.class);
+	         Method setSqlSessionFactory = cls.getMethod("setSessionFactory", SqlSessionFactory.class);
 	         
 	         Object obj = cls.newInstance();
 	         setSqlSessionFactory.invoke(obj, sqlSessionFactory);

@@ -1,15 +1,14 @@
-package com.jsp.servlet;
+package com.jsp.action.commons;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.jsp.action.Action;
 import com.jsp.dispatcher.ViewResolver;
 import com.jsp.dto.MemberVO;
 import com.jsp.exception.InvalidPasswordException;
@@ -17,36 +16,29 @@ import com.jsp.exception.NotFoundIDException;
 import com.jsp.service.MemberService;
 import com.jsp.service.MemberServiceImpl;
 
+public class LoginAction implements Action {
 
-//@WebServlet("/commons/login")
-public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-//	public void init(ServletConfig config) throws ServletException {
-//		System.out.println("init() execute!");
-//	}
-//	public void destroy() {
-//		System.out.println("destory() execute!");
-//	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url="/WEB-INF/views/commons/loginForm.jsp";
-		
-		request.getRequestDispatcher(url).forward(request, response);	
+	private MemberService memberService = MemberServiceImpl.getInstance();
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
 	}
-
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-					throws ServletException, IOException {
-		String url="redirect:/member/list";
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		String url="redirect:/member/list.do";
 		
 		String id=request.getParameter("id");
 		String pwd=request.getParameter("pwd");		
 		
-		HttpSession session = request.getSession();		
+		HttpSession session = request.getSession();
+		
+		System.out.println("############LoginAction exe >> " + url);
 		
 		try {
-			MemberServiceImpl.getInstance().login(id, pwd);
-//			memberService.login(id, pwd);
+//			MemberServiceImpl.getInstance().login(id, pwd);
+			memberService.login(id, pwd);
 			
 			MemberVO loginUser=MemberServiceImpl.getInstance().getMember(id);
 //			MemberVO loginUser = memberService.getMember(id);
@@ -62,14 +54,13 @@ public class LoginServlet extends HttpServlet {
 			
 		} catch (NotFoundIDException | InvalidPasswordException e) {
 			//e.printStackTrace();
-			url="commons/loginForm";
+			url="redirect:/commons/loginForm.do";
 			request.setAttribute("msg", e.getMessage());
 		} 
-		ViewResolver.view(request, response, url);
+				
+//		ViewResolver.view(request, response, url);
+
+		return url;
 	}
+
 }
-
-
-
-
-

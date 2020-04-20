@@ -5,7 +5,6 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <head>
 	<title>회원관리 시스템</title>
 </head>
@@ -93,7 +92,6 @@
 	             				<td colspan="5" >해당 사항이 없습니다.</td>
 	             			</tr>
 	             		</c:if>
-	             		
 				 	</table>	
             	</div>
            	</div>            
@@ -103,7 +101,7 @@
 		  </div> <!-- card-footer -->
         </div> <!-- card  -->
       </section>	
-    </div>				
+    </div>
 				
 
 <%-- <%@ include file="/WEB-INF/views/include/footer.jsp" %> --%>

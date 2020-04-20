@@ -1,26 +1,32 @@
-package com.jsp.servlet;
+package com.jsp.action.member;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Map;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jsp.dispatcher.ViewResolver;
+import com.jsp.action.Action;
 import com.jsp.request.SearchCriteria;
 import com.jsp.service.MemberService;
 import com.jsp.service.MemberServiceImpl;
 
+public class MemberListAction implements Action{
 
-//@WebServlet("/member/list")
-public class MemberListServlet extends HttpServlet {
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private MemberService memberService = MemberServiceImpl.getInstance();
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
+	}
+	
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String url = "member/list";
+		
+		System.out.println("############MemberListAction exe >> " + url);
+
 		
 		SearchCriteria cri = new SearchCriteria();
 		
@@ -49,41 +55,11 @@ public class MemberListServlet extends HttpServlet {
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
+			url="error/500_error";
+
 		}
 		
-		ViewResolver.view(request, response, url);
-		
-//		String url="member/list";
-//		
-//		HttpSession session = request.getSession();
-//		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-//		if(loginUser==null) {
-//			
-//			url="redirect:/commons/login";
-//			
-//			ViewResolver.view(request, response, url);
-//			
-//			return;
-//		}
-//		
-//		try {
-//			
-//			//hh.joo 20200417 remove
-////			List<MemberVO> memberList = MemberServiceImpl.getInstance().getMemberList();
-////			request.setAttribute("memberList", memberList);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			url="error/500_error";
-//			request.setAttribute("exception", e);
-//		}
-//		
-//		ViewResolver.view(request, response, url);
-		
-	}
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		return url;
 	}
 
 }

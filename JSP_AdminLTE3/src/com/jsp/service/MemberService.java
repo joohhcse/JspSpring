@@ -12,8 +12,7 @@ import com.jsp.request.SearchCriteria;
 public interface MemberService {
 	
 	//로그인
-	void login(String id, String pwd)throws SQLException,
-										NotFoundIDException,InvalidPasswordException;
+	void login(String id, String pwd)throws SQLException, NotFoundIDException,InvalidPasswordException;
 	
 	//회원리스트조회
 	List<MemberVO> getMemberList()throws SQLException;	
