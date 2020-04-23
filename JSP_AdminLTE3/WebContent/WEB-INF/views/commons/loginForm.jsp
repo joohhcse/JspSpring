@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <title></title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta
@@ -64,12 +63,7 @@ body.login-page{
 					<!-- /.col -->
 				</div>
 			</form>
-
-			
-
 			<a href="#" style="font-weight:bold;">아이디/패스워드 찾기</a><br> 
-			
-
 		</div>
 		<!-- /.login-box-body -->
 	  </div>	

@@ -5,12 +5,6 @@
 
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 
-
-
 <decorator:body />
 
-
-
-
 <%@ include file="/WEB-INF/views/include/footer.jsp" %>
-

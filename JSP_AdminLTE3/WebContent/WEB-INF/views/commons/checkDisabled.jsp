@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
-
 <script>
-	alert("정지된 계정입니다.\n 사용제한으로 불가합니다");
+	alert("접근이 제한된 계정입니다.\n관리자에게 문의하십시오")
 	history.go(-1);
+/* 	if(window.opener){
+		window.close();
+	} */
 </script>

@@ -9,16 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jsp.action.Action;
-import com.jsp.dispatcher.ViewResolver;
 import com.jsp.dto.MemberVO;
 import com.jsp.exception.InvalidPasswordException;
 import com.jsp.exception.NotFoundIDException;
 import com.jsp.service.MemberService;
-import com.jsp.service.MemberServiceImpl;
 
 public class LoginAction implements Action {
 
-	private MemberService memberService = MemberServiceImpl.getInstance();
+	private MemberService memberService;// = MemberServiceImpl.getInstance();
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
@@ -30,22 +28,15 @@ public class LoginAction implements Action {
 		String url="redirect:/member/list.do";
 		
 		String id=request.getParameter("id");
-		String pwd=request.getParameter("pwd");		
+		String pwd=request.getParameter("pwd");	
+		HttpSession session = request.getSession();		
 		
-		HttpSession session = request.getSession();
-		
-		System.out.println("############LoginAction exe >> " + url);
 		
 		try {
-//			MemberServiceImpl.getInstance().login(id, pwd);
 			memberService.login(id, pwd);
-			
-			MemberVO loginUser=MemberServiceImpl.getInstance().getMember(id);
-//			MemberVO loginUser = memberService.getMember(id);
-			
+			MemberVO loginUser = memberService.getMember(id);
 			session.setAttribute("loginUser", loginUser);
 			session.setMaxInactiveInterval(60*60);
-//			session.setMaxInactiveInterval(6);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -57,9 +48,7 @@ public class LoginAction implements Action {
 			url="redirect:/commons/loginForm.do";
 			request.setAttribute("msg", e.getMessage());
 		} 
-				
-//		ViewResolver.view(request, response, url);
-
+		
 		return url;
 	}
 

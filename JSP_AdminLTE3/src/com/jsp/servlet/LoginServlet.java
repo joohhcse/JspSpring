@@ -14,21 +14,26 @@ import com.jsp.dispatcher.ViewResolver;
 import com.jsp.dto.MemberVO;
 import com.jsp.exception.InvalidPasswordException;
 import com.jsp.exception.NotFoundIDException;
-import com.jsp.service.MemberService;
 import com.jsp.service.MemberServiceImpl;
 
 
 //@WebServlet("/commons/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-//	public void init(ServletConfig config) throws ServletException {
-//		System.out.println("init() execute!");
-//	}
-//	public void destroy() {
-//		System.out.println("destory() execute!");
-//	}
+   
+/*
+	public void init(ServletConfig config) throws ServletException {
+		System.out.println("init() execute!");
+	}
 
+	
+	public void destroy() {
+		System.out.println("destory() execute!");
+	}
+*/
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String url="/WEB-INF/views/commons/loginForm.jsp";
 		
 		request.getRequestDispatcher(url).forward(request, response);	
@@ -44,16 +49,13 @@ public class LoginServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();		
 		
+		
 		try {
 			MemberServiceImpl.getInstance().login(id, pwd);
-//			memberService.login(id, pwd);
 			
 			MemberVO loginUser=MemberServiceImpl.getInstance().getMember(id);
-//			MemberVO loginUser = memberService.getMember(id);
-			
 			session.setAttribute("loginUser", loginUser);
-			session.setMaxInactiveInterval(60*60);
-//			session.setMaxInactiveInterval(6);
+			session.setMaxInactiveInterval(60*5);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -65,8 +67,10 @@ public class LoginServlet extends HttpServlet {
 			url="commons/loginForm";
 			request.setAttribute("msg", e.getMessage());
 		} 
+		
 		ViewResolver.view(request, response, url);
 	}
+
 }
 
 

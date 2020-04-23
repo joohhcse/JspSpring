@@ -31,7 +31,7 @@
     <section class="content">		
 		<div class="card">
 			<div class="card-header with-border">
-				<button type="button" class="btn btn-primary" id="registBtn" onclick="OpenWindow('registForm.do','글등록',600,400);">글등록</button>				
+				<button type="button" class="btn btn-primary" id="registBtn" onclick="OpenWindow('registForm.do','글등록',600,800);">글등록</button>				
 				<div id="keyword" class="card-tools" style="width:350px;">
 					<div class="input-group row">						
 						<select class="form-control col-md-4" name="searchType" id="searchType">
@@ -104,12 +104,9 @@
   <!-- /.content-wrapper -->
 	<form id="jobForm">
 		  <input type='hidden' name="page" value="${pageMaker.cri.page}" />
-		  <input type='hidden' name="perPageNum" 
-		  		 value="${pageMaker.cri.perPageNum}"/>
-		  <input type='hidden' name="searchType" 
-		         value="${pageMaker.cri.searchType }" />
-		  <input type='hidden' name="keyword" 
-		         value="${pageMaker.cri.keyword }" />
+		  <input type='hidden' name="perPageNum" value="${pageMaker.cri.perPageNum}"/>
+		  <input type='hidden' name="searchType" value="${pageMaker.cri.searchType }" />
+		  <input type='hidden' name="keyword" value="${pageMaker.cri.keyword }" />
 	</form>
    	
 <script>

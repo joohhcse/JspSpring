@@ -13,7 +13,7 @@ public class LoginFormAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		String url="commons/loginForm";
 		
 		return url;

@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-
-
-<%-- <%@ include file="/WEB-INF/views/include/open_header.jsp" %> --%>
 <body>
-
-	<!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	  <section class="content-header">
@@ -38,7 +34,7 @@
 				<div class="card-header">
 					<div class="row">								
 						<div class="col-sm-6">
-							<button type="button" class="btn btn-info" onclick="SubmitMember('form');">가입하기</button>
+							<button type="button" class="btn btn-info" onclick="SubmitMemberRegist('form');">가입하기</button>
 					 	</div>
 					 	
 					 	<div class="col-sm-6">
@@ -49,7 +45,7 @@
 					</div>
 				</div>
 				<div class="register-card-body">
-					<form role="form" class="form-horizontal" action="regist" method="post">						
+					<form role="form" class="form-horizontal" action="regist.do" method="post">						
 						<input type="hidden" name="picture" />
 						<div class="input-group mb-3">
 							<div class="mailbox-attachments clearfix" style="text-align: center;">
@@ -125,12 +121,14 @@
 										<option value="018">018</option>
 									</select>							
 									<label class="float-left" style="padding: 0; text-align: center;">&nbsp;-&nbsp;</label>										
-									<input style="width:68px;" name="phone" type="text" class="form-control float-left" />
+									<input style="width:70px;" name="phone" type="text" class="form-control float-left" />
 									<label class="float-left" style="padding: 0; text-align: center;">&nbsp;-</label>
-									<input style="width:68px;" name="phone" type="text" class="form-control float-right" />						
+									<input style="width:70px;" name="phone" type="text" class="form-control float-left" />						
 								</div>
 							</div>
 						</div>
+						
+						
 					</form>					
 				</div><!-- register-card-body -->
 			</div>
@@ -140,14 +138,13 @@
 <!-- /.content-wrapper -->
 
 
-<form role="imageForm" action="upload/picture" method="post" 
+<form role="imageForm" action="picture/upload.do" method="post" 
 		enctype="multipart/form-data">
 	<input id="inputFile" name="pictureFile" type="file" class="form-control" style="display:none;">
 	<input id="oldFile" type="hidden" name="oldPicture" value="" />
 	<input type="hidden" name="checkUpload" value="0" />	
 </form>
 
-<%-- <%@ include file="/WEB-INF/views/include/open_footer.jsp" %> --%>
-
 <%@ include file="picture_js.jsp" %>
+
 </body>

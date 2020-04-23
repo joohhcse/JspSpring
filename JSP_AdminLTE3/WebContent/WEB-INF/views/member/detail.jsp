@@ -2,9 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%-- <%@ include file="/WEB-INF/views/include/open_header.jsp" %> --%>
-
 <body>
   <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
@@ -53,25 +50,25 @@
 	                <div class="form-group row">
 	                  <label for="inputPassword3" class="col-sm-3 control-label text-right">패스워드</label>
 	                  <div class="col-sm-9">
-	                    <input name="pwd" type="password" class="form-control" id="inputPassword3" value="${member.pwd }">
+	                    <input name="pwd" type="password" readonly class="form-control" id="inputPassword3" value="${member.pwd }">
 	                  </div>
 	                </div>
 	                <div class="form-group row">
 	                  <label for="inputPassword3" class="col-sm-3 control-label text-right">이&nbsp;&nbsp;름</label>
 	                  <div class="col-sm-9">
-	                    <input name="pwd" type="text" class="form-control" id="inputPassword3" value="${member.name }">
+	                    <input name="pwd" type="text" readonly class="form-control" id="inputPassword3" value="${member.name }">
 	                  </div>
 	               </div>
 	                <div class="form-group row">
 	                  <label for="inputPassword3" class="col-sm-3 control-label text-right">이메일</label>
 	                  <div class="col-sm-9">
-	                    <input name="email" type="email" class="form-control" id="inputPassword3" value="${member.email }">
+	                    <input name="email" type="email" readonly class="form-control" id="inputPassword3" value="${member.email }">
 	                  </div>
 	                </div>
 	                <div class="form-group row">
 	                  <label for="inputPassword3" class="col-sm-3 control-label text-right">전화번호</label>
 	                  <div class="col-sm-9">   
-	                  	<input name="phone" type="text" class="form-control" id="inputPassword3" value="${member.phone.substring(0,3) }-${member.phone.substring(3,7)}-${member.phone.substring(7) }">	                
+	                  	<input name="phone" type="text" readonly class="form-control" id="inputPassword3" value="${member.phone.substring(0,3) }-${member.phone.substring(3,7)}-${member.phone.substring(7) }">	                
 	                  </div>                  
 	                </div>               
 	              </div> <!-- card body -->
@@ -83,15 +80,15 @@
 			          		<div class="col-sm-3text-center">
 				          		<button type="button" id="deleteBtn" class="btn btn-danger" >삭 제</button>
 			          		</div>
-			          		<c:if test="${member.enabled eq 1 }">
-				          		<div class="col-sm-3 text-center">
-				          			<button type="button" id="disabledBtn" class="btn btn-info" >정 지</button>
-				          		</div>
+			          		<c:if test="${member.enabled eq 1}">
+			          		<div class="col-sm-3 text-center">
+			          			<button type="button" id="disabledBtn" class="btn btn-info" >비활성</button>
+			          		</div>
 			          		</c:if>
-			          		<c:if test="${member.enabled eq 0 }">
-				          		<div class="col-sm-3 text-center">
-				          			<button type="button" id="enabledBtn" class="btn btn-info" >활 성</button>
-				          		</div>
+			          		<c:if test="${member.enabled eq 0}">
+			          		<div class="col-sm-3 text-center">
+			          			<button type="button" id="abledBtn" class="btn btn-info" >활 성</button>
+			          		</div>
 			          		</c:if>
 			          		<div class="col-sm-3 text-center">
 			            		<button type="button" id="listBtn" onclick="CloseWindow();" class="btn btn-primary pull-right">닫 기</button>
@@ -110,42 +107,46 @@
 	<input type="hidden" name="id" value="${member.id }" />
 </form>
 
-
-<%-- <%@ include file="/WEB-INF/views/include/open_footer.jsp" %> --%>
-
 <script>
-	var imageURL="picture/get?picture=${member.picture}";
+	var imageURL="picture/get.do?picture=${member.picture}";
 	$('div#pictureView').css({'background-image':'url('+imageURL+')',
 							  'background-position':'center',
 							  'background-size':'cover',
 							  'background-repeat':'no-repeat'
 	});
 	
-		
-	$('#modifyBtn').on('click',function(e){		
-		location.href="modify?id=${member.id}";		
-	});
-	$('#disabledBtn').on('click',function(e){	
-		location.href="disabled?id=${member.id}";
-	});
-	$('#enabledBtn').on('click',function(e){	
-		location.href="enabled?id=${member.id}";
-	});
-	$('#deleteBtn').on('click',function(e){
+	$('button#modifyBtn').on('click', function(){
+		location.href="modifyForm.do?id=${member.id}";
+	})
+	
+	$('button#deleteBtn').on('click', function(){
 		var pwd = prompt("암호를 입력하세요");
-		
+
 		$.ajax({
 			url:"checkPassword?pwd="+pwd,
 			type:"get",
 			success:function(data){
-				if(data=="SUCCESS"){
-					location.href="remove?id=${member.id}";
-				}else{
+				if(data == "SUCCESS"){
+					location.href="remove.do?id=${member.id}";
+				} else {
 					alert("패스워드가 일치하지 않습니다.");
 				}
+				
 			}
-		});
-		
+		})
 	});
+	
+	$('button#disabledBtn').on('click', function(){
+		location.href="disabled.do?id=${member.id}";
+	})
+	
+	$('button#abledBtn').on('click', function(){
+		location.href="abled.do?id=${member.id}";
+	})
+	
+	$('button#deleteBtn').on('click', function(){
+		location.href="remove.do?id=${member.id}";
+	})
 </script>
+<%-- <%@ include file="/WEB-INF/views/include/open_footer.jsp" %> --%>
 </body>

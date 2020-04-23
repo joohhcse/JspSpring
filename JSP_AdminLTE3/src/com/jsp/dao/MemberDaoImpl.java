@@ -11,23 +11,13 @@ import com.jsp.dto.MemberVO;
 import com.jsp.request.SearchCriteria;
 
 public class MemberDAOImpl implements MemberDAO {
-
-//	private static MemberDAOImpl instance=new MemberDAOImpl();
-//	private MemberDAOImpl() {}
-//	public static MemberDAOImpl getInstance() {
-//		return instance;
-//	}
-	
-	// SqlSessionFactory
-//	private SqlSessionFactory sessionFactory = OracleMyBatisSqlSessionFactoryBuilder.getSqlSessionFactory();
 	
 	// SqlSessionFactory
 	private SqlSessionFactory sessionFactory;
 	public void setSessionFactory(SqlSessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
-	
+
 	@Override
 	public List<MemberVO> selectMemberList() throws SQLException {
 		SqlSession session = sessionFactory.openSession();
@@ -85,9 +75,8 @@ public class MemberDAOImpl implements MemberDAO {
 		SqlSession session=sessionFactory.openSession(true);
 		session.update("Member-Mapper.disabledMember",id);
 		session.close();
-
+		
 	}
-	
 	@Override
 	public void enabledMember(String id) throws SQLException {
 		SqlSession session=sessionFactory.openSession(true);
@@ -106,6 +95,7 @@ public class MemberDAOImpl implements MemberDAO {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 
 		List<MemberVO> memberList = null;
+
 		
 		memberList=session.selectList("Member-Mapper.selectSearchMemberList",cri,rowBounds);
 
@@ -116,12 +106,20 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public int selectMemberListCount(SearchCriteria cri) throws SQLException {
-		int count = 0;
-		SqlSession session = sessionFactory.openSession();
-		count = session.selectOne("Member-Mapper.selectSearchMemberListCount", cri);
+		int count=0;		
+		SqlSession session=sessionFactory.openSession();
+		count=session.selectOne("Member-Mapper.selectSearchMemberListCount",cri);
+		
 		session.close();
 		
 		return count;
 	}
 
 }
+
+
+
+
+
+
+

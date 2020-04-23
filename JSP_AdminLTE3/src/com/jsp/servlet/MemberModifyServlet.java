@@ -47,7 +47,8 @@ public class MemberModifyServlet extends HttpServlet {
 		String authority = request.getParameter("authority");
 		String[] phone = request.getParameterValues("phone");
 		
-		MemberRegistRequest memberReq = new MemberRegistRequest(id,pwd,authority,email,phone,picture,name);
+		MemberRegistRequest memberReq = 
+				new MemberRegistRequest(id,pwd,authority,email,phone,picture,name);
 		
 		MemberVO member = memberReq.toMemberVO();
 		
@@ -74,6 +75,7 @@ public class MemberModifyServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("id", id);
+		request.setAttribute("member", member);
 		
 		ViewResolver.view(request, response, url);
 	}

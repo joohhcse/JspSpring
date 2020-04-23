@@ -16,31 +16,31 @@ import com.jsp.service.MemberServiceImpl;
 
 //@WebServlet("/member/disabled")
 public class MemberDisabledServlet extends HttpServlet {
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	private static final long serialVersionUID = 1L;
+       
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "member/disabled_success";
+		
 		String id = request.getParameter("id");
-
+		
 		HttpSession session = request.getSession();
-		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
-
-		if (id.equals(loginUser.getId())) { // 로그인 사용자일 경우 불허함.
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+		if(id.equals(loginUser.getId())) {	//로그인 사용자일 경우 불허
 			url = "member/disabled_denied";
-		} else { //로그인 사용자가 아닐경우 실행.
+		} else {	//로그인 사용자가 아닐경우 실행.
 			try {
 				MemberServiceImpl.getInstance().disabled(id);
+				request.setAttribute("id", id);
 			} catch (SQLException e) {
 				e.printStackTrace();
-				url = "member/disabled_fail";
+				url="member/disabled_fail";
 			}
 		}
-
 		ViewResolver.view(request, response, url);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 

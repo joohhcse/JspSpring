@@ -9,11 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jsp.action.Action;
 import com.jsp.dto.BoardVO;
+import com.jsp.dto.MemberVO;
 import com.jsp.service.BoardService;
 
 public class BoardDetailAction implements Action {
 
-	private BoardService boardService;// =BoardServiceImpl.getInstance();
+	private BoardService boardService;// = BoardServiceImpl.getInstance();
+
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
@@ -24,13 +26,17 @@ public class BoardDetailAction implements Action {
 		String url = "board/detailBoard";
 
 		int bno = Integer.parseInt(request.getParameter("bno"));
+		MemberVO loginUser = (MemberVO) request.getAttribute("loginUser");
 
 		try {
 			BoardVO board = boardService.getBoard(bno);
+//			if(loginUser.getId() == board.getWriter()) {
+////				boardService.
+//			}
 			request.setAttribute("board", board);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			url="error/500_error";
+			url = "error/500_error";
 		}
 
 		return url;

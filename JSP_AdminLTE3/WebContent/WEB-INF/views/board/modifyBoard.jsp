@@ -32,7 +32,7 @@
 					<div class="card-body">
 						<form role="form" method="post" action="modify.do" name="modifyForm">
 							
-							<input type="hidden" name="bno" value="${board.bno }" />
+							<input type='hidden' name='bno' value="${board.bno }" />
 							<input type='hidden' name='page' value="${param.page}">
 							<input type='hidden' name='perPageNum' value="${param.perPageNum}">
 							<input type='hidden' name='searchType' value="${param.searchType}">
@@ -55,7 +55,7 @@
 							</div>
 							
 							
-							
+							<input type="hidden" name="bno" value="${board.bno }" />
 							
 						</form>
 					</div><!--end card-body  -->
@@ -69,7 +69,9 @@
   <!-- /.content-wrapper -->
 	
 <!-- Summernote -->
-<script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/summernote/summernote-bs4.min.js"></script>
+<%-- <script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/summernote/summernote-bs4.min.js"></script> --%>
+
+<%@ include file="/WEB-INF/views/commons/summernote.jsp" %>
 <script>
 	$(function(){
 		$('#content').summernote({

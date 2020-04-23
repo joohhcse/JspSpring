@@ -22,6 +22,9 @@ public interface BoardDAO {
 
 	// viewcnt 증가
 	void increaseViewCnt(int bno) throws SQLException;
+	
+	// 수정시 viewcnt 보정
+	void modifyViewCntForModify(int bno) throws SQLException;
 
 	// board_seq.nextval 가져오기
 	int selectBoardSeqNext() throws SQLException;

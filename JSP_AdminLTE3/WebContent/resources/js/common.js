@@ -1,5 +1,4 @@
-
-//팝업창들 뛰우기
+//팝업창들 띄우기
 //새로운 Window창을 Open할 경우 사용되는 함수 ( arg : 주소 , 창타이틀 , 넓이 , 길이 )
 function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
 	winleft = (screen.width - WinWidth) / 2;
@@ -19,7 +18,7 @@ function CloseWindow(){
 //-----------------------------------------------
 
 // form submit
-function SubmitMember(formRole){
+function SubmitMemberRegist(formRole){
 	var uploadCheck = $('input[name="checkUpload"]').val();
 	if(!(uploadCheck>0)){
 		alert("사진 업로드는 필수입니다.");	
@@ -29,14 +28,3 @@ function SubmitMember(formRole){
 	var form = $('form[role="'+formRole+'"]');
 	form.submit();
 }
-
-//form cancel
-function Cancel(){
-	history.go(-1);
-}
-
-
-
-
-
-

@@ -128,9 +128,9 @@
         <p><input type="text" id="replytext" class="form-control"></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-info" id="replyModBtn">Modify</button>
+        <button type="button" class="btn btn-info" id="replyModBtn">MODIFY</button>
         <button type="button" class="btn btn-danger" id="replyDelBtn">DELETE</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
   </div>
@@ -138,7 +138,7 @@
 	
 	<jsp:include page="detailBoard_js.jsp"></jsp:include>
 	
-<%-- 	<%@ include file="reply_js.jsp" %> --%>
+	<%@ include file="reply_js.jsp" %>
 	
 		
 </body>

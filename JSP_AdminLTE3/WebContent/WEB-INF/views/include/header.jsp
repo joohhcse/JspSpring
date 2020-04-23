@@ -14,7 +14,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title><decorator:title default="Encodiong" /></title>
+  <title><decorator:title default="은주's Encodiong" /></title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/fontawesome-free/css/all.min.css">
@@ -24,11 +24,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 	
   
-	<!-- jQuery -->
-	<script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/jquery/jquery.min.js"></script>
+  <!-- jQuery -->
+  <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/jquery/jquery.min.js"></script>
 	
-  <decorator:head />
-
+<decorator:head />
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -172,15 +171,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<%=request.getContextPath()%>/member/picture/get?picture=${loginUser.picture}"
-          	   onerror="this.src='<%=request.getContextPath() %>/resources/bootstrap/dist/img/avatar.png'" 
+          <img src="<%=request.getContextPath()%>/member/picture/get.do?picture=${loginUser.picture}"
+          	   onerror="this.src='<%=request.getContextPath() %>/resources/bootstrap/dist/img/user3-128x128.jpg'" 
           	   class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <div class="row">
           	<a class="col-md-8" href="">${loginUser.id }</a>
           	<button class="btn btn-xs btn-primary col-xs-3 " type="button" 
-          		onclick="location.href='<%=request.getContextPath() %>/commons/logout';" >Logout</button>
+          		onclick="location.href='<%=request.getContextPath() %>/commons/logout.do';" >Logout</button>
           </div>
           <a href="tel:${loginUser.phone }">tel : ${loginUser.phone }</a><br/>
           <a href="mailto:${loginUser.email }">email : ${loginUser.email }</a>			          

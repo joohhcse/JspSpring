@@ -14,69 +14,67 @@ import org.apache.ibatis.session.TransactionIsolationLevel;
 public class OracleMyBatisSqlSessionFactory implements SqlSessionFactory {
 
 	private static SqlSessionFactory sqlSessionFactory;
-	
+
 	static {
-		
-		String config="com/jsp/mybatis/sqlConfig.xml";
-		
+
+		String config = "com/jsp/mybatis/sqlConfig.xml";
+
 		try {
-			Reader reader=Resources.getResourceAsReader(config);
-			
-			sqlSessionFactory=new SqlSessionFactoryBuilder().build(reader);
-			
-			/*reader.close();*/
-			
+			Reader reader = Resources.getResourceAsReader(config);
+
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+
+			/* reader.close(); */
+
 			System.out.println("sqlSessionFactory 성공했습니다.");
-		}catch(Exception e) {			
+		} catch (Exception e) {
 			System.out.println("sqlSessionFactory 실패했습니다.");
 			e.printStackTrace();
 		}
-		
 	}
 
-	
 	@Override
-	public Configuration getConfiguration() {		
+	public Configuration getConfiguration() {
 		return sqlSessionFactory.getConfiguration();
 	}
 
 	@Override
-	public SqlSession openSession() {		
+	public SqlSession openSession() {
 		return sqlSessionFactory.openSession();
 	}
 
 	@Override
-	public SqlSession openSession(boolean autoCommit) {		
+	public SqlSession openSession(boolean autoCommit) {
 		return sqlSessionFactory.openSession(autoCommit);
 	}
 
 	@Override
-	public SqlSession openSession(Connection conn) {		
+	public SqlSession openSession(Connection conn) {
 		return sqlSessionFactory.openSession(conn);
 	}
 
 	@Override
-	public SqlSession openSession(TransactionIsolationLevel transLevel) {		
+	public SqlSession openSession(TransactionIsolationLevel transLevel) {
 		return sqlSessionFactory.openSession(transLevel);
 	}
 
 	@Override
-	public SqlSession openSession(ExecutorType exeType) {		
+	public SqlSession openSession(ExecutorType exeType) {
 		return sqlSessionFactory.openSession(exeType);
 	}
 
 	@Override
 	public SqlSession openSession(ExecutorType exeType, boolean autoCommit) {
-		return sqlSessionFactory.openSession(exeType,autoCommit);
+		return sqlSessionFactory.openSession(exeType, autoCommit);
 	}
 
 	@Override
-	public SqlSession openSession(ExecutorType exeType, TransactionIsolationLevel transLevel) {
-		return sqlSessionFactory.openSession(exeType,transLevel);
+	public SqlSession openSession(ExecutorType exeType, TransactionIsolationLevel autoCommit) {
+		return sqlSessionFactory.openSession(exeType, autoCommit);
 	}
 
 	@Override
 	public SqlSession openSession(ExecutorType exeType, Connection conn) {
-		return sqlSessionFactory.openSession(exeType,conn);
+		return sqlSessionFactory.openSession(exeType, conn);
 	}
 }

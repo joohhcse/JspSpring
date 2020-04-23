@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 
-
 <script>
-	window.opener.location.href.reload(true);
-	location.href="detail?id=${id}";
+	alert("${id}를 비활성화시켰습니다.");
+	location.href="/member/detail.do?id=${id}"
 </script>
-
