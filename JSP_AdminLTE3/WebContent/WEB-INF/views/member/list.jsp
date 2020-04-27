@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <head>
-	<title>픽투르 시스템즈</title>
+	<title>시스템즈</title>
 </head>
 
 <%-- <%@ include file="/WEB-INF/views/include/header.jsp" %> --%>

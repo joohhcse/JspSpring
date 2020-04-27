@@ -20,7 +20,8 @@ import com.jsp.dto.MemberVO;
 public class LoginCheckFilter implements Filter {
 
 	private List<String> exURLs = new ArrayList<String>();
-	
+	private ViewResolver viewResolver;
+
 	public void destroy() {
 
 	}
@@ -42,7 +43,7 @@ public class LoginCheckFilter implements Filter {
 		// 로그인 확인
 		if(loginUser == null) {	//비로그인 상태
 			String url = "commons/loginCheck";
-			ViewResolver.view(httpReq, httpResp, url);
+			viewResolver.view(httpReq, httpResp, url);
 		} else {
 			chain.doFilter(request, response);			
 		}
@@ -62,7 +63,21 @@ public class LoginCheckFilter implements Filter {
 		StringTokenizer st= new StringTokenizer(excludeURLNames,",");
 		while(st.hasMoreTokens()) {
 			exURLs.add(st.nextToken());
-		}	
+		}
+		
+		//viewResolver
+		String viewResolverType = fConfig.getInitParameter("viewResolver");
+		
+		try {
+			Class<?> cls = Class.forName(viewResolverType);
+			this.viewResolver=(ViewResolver)cls.newInstance();
+			System.out.println("[LoginCheckFilter]"+viewResolverType+"가 준비되었습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("[LoginCheckFilter]"+viewResolverType+"가 준비되지 않았습니다.");
+		}		
+		
+		
 	}
 
 }

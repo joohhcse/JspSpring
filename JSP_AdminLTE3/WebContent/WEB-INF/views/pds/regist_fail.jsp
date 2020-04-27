@@ -2,4 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 
-<jsp:forward page="/commons/loginForm" />
+<script>
+	alert("자료등록에 실패했습니다.");
+// 	history.go(-1);
+</script>
+
+
+
+
+

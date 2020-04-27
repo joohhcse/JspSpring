@@ -36,7 +36,7 @@ public class LoginAction implements Action {
 			memberService.login(id, pwd);
 			MemberVO loginUser = memberService.getMember(id);
 			session.setAttribute("loginUser", loginUser);
-			session.setMaxInactiveInterval(60*60);
+			session.setMaxInactiveInterval(60*600);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
