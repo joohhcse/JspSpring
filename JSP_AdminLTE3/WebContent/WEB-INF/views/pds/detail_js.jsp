@@ -16,7 +16,6 @@
 		formObj.attr("method", "post");
 		formObj.submit();
 	});
-
 </script>
 
 

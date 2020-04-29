@@ -32,7 +32,7 @@ public class AttachDAOImpl implements AttachDAO{
 
 	@Override
 	public List<AttachVO> selectAttachesByPno(int pno) throws SQLException {
-		SqlSession session = sessionFactory.openSession(true);	//OracleMyBatisSqlSession.getSqlSessionFactory().openSession();
+		SqlSession session = sessionFactory.openSession();	//OracleMyBatisSqlSession.getSqlSessionFactory().openSession();
 		List<AttachVO> attachList=
 				session.selectList("Attach-Mapper.selectAttachByPno",pno);
 		session.close();
@@ -47,7 +47,7 @@ public class AttachDAOImpl implements AttachDAO{
 	}
 	@Override
 	public AttachVO selectAttachByAno(int ano) throws SQLException {
-		SqlSession session = sessionFactory.openSession(true); //OracleMyBatisSqlSession.getSqlSessionFactory().openSession();
+		SqlSession session = sessionFactory.openSession(); //OracleMyBatisSqlSession.getSqlSessionFactory().openSession();
 		
 		AttachVO attach=
 			session.selectOne("Attach-Mapper.selectAttachByAno",ano);

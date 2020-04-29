@@ -26,8 +26,8 @@ public class BoardDAOImpl implements BoardDAO {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 
 		List<BoardVO> boardList = session.selectList("Board-Mapper.selectBoardCriteria", cri, rowBounds);
-		session.close();
 
+		session.close();
 		return boardList;
 	}
 

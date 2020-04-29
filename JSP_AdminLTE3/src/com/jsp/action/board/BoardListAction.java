@@ -32,8 +32,8 @@ public class BoardListAction implements Action {
 		SearchCriteria cri = new SearchCriteria();
 
 		try {
-		cri.setPage(Integer.parseInt(page));
-		cri.setPerPageNum(Integer.parseInt(perPageNum));
+			cri.setPage(Integer.parseInt(page));
+			cri.setPerPageNum(Integer.parseInt(perPageNum));
 		} catch (NumberFormatException e) {
 			System.out.println("페이지 번호를 1로 세팅합니다.");
 		}

@@ -4,7 +4,5 @@
 
 <script>
 	alert("자료수정이 성공했습니다.");
-	window.close();
-	window.opener.location.href="list.do?page=1&perPageNum=10";
-	
+	location.href="detail.do?{pageMaker.makeQuery()}&pno=${pds.pno}&from=modify";
 </script>

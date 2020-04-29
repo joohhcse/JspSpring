@@ -159,16 +159,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
+    Brand Logo
     <a href="index3.html" class="brand-link">
       <img src="<%=request.getContextPath()%>/resources/bootstrap/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
-    <!-- Sidebar -->
+    Sidebar
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
+      Sidebar user panel (optional)
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="<%=request.getContextPath()%>/member/picture/get.do?picture=${loginUser.picture}"
@@ -186,7 +186,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
       </div>
 
-      <!-- Sidebar Menu -->
+      Sidebar Menu
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview"
         	data-accordion="false">
@@ -210,7 +210,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	        </li>
         </ul>
       </nav>
-      <!-- /.sidebar-menu -->
+      /.sidebar-menu
     </div>
-    <!-- /.sidebar -->
+    /.sidebar
   </aside>

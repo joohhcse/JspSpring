@@ -3,8 +3,8 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 
 <script>
-	alert("자료수정에 실패했습니다.");
-// 	history.go(-1);
+	alert("서비스 장애로 실패했습니다.");
+	history.go(-1);
 </script>
 
 
